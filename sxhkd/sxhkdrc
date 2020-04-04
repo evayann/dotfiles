@@ -1,0 +1,262 @@
+
+#   .|'''.|  '||' '|' '||'  '||' '||'  |'  '||''|.   '||''|.     ..|'''.| 
+#   ||..  '    || |    ||    ||   || .'     ||   ||   ||   ||  .|'     '  
+#    ''|||.     ||     ||''''||   ||'|.     ||    ||  ||''|'   ||         
+#  .     '||   | ||    ||    ||   ||  ||    ||    ||  ||   |.  '|.      . 
+#  |'....|'  .|   ||. .||.  .||. .||.  ||. .||...|'  .||.  '|'  ''|....'  
+
+
+                                                                          
+##########################
+#        WARNING         #
+##########################
+
+# AZERTY version to have QWERTY, replace :
+# {ampersand,eacute,quotedbl,apostrophe,parenleft,minus,egrave,underscore,ccedilla,agrave}
+# By :
+# {1-9, 0}
+
+###########################
+
+
+
+
+#   .|'''.|  '||' '|' '||'  '||' '||'  |'  '||''|.   
+#   ||..  '    || |    ||    ||   || .'     ||   ||  
+#    ''|||.     ||     ||''''||   ||'|.     ||    || 
+#  .     '||   | ||    ||    ||   ||  ||    ||    || 
+#  |'....|'  .|   ||. .||.  .||. .||.  ||. .||...|'                                                      
+
+# Open sxhkdrc
+super + shift + b
+	subl ~/.config/sxhkd/sxhkdrc
+	
+# Restart sxhkd
+super + b
+	pkill -USR1 -x sxhkd
+
+
+
+#      |                       '||   ||                    .    ||                          
+#     |||    ... ...  ... ...   ||  ...    ....   ....   .||.  ...    ...   .. ...    ....  
+#    |  ||    ||'  ||  ||'  ||  ||   ||  .|   '' '' .||   ||    ||  .|  '|.  ||  ||  ||. '  
+#   .''''|.   ||    |  ||    |  ||   ||  ||      .|' ||   ||    ||  ||   ||  ||  ||  . '|.. 
+#  .|.  .||.  ||...'   ||...'  .||. .||.  '|...' '|..'|'  '|.' .||.  '|..|' .||. ||. |'..|' 
+#             ||       ||                                                                   
+#            ''''     ''''   
+
+# Gui Pacman 
+super + p
+    pamac-manager
+    
+# Dolphon file manager
+ctrl + alt + e
+    dolphin
+
+# Thunderbird
+ctrl + alt + t
+	thunderbird
+
+# Firefox
+ctrl + alt + f
+    firefox
+
+# Discord
+ctrl + alt + d
+    discord
+
+# Terminal 
+ctrl + alt + {_, shift +} p
+	{kitty, cool-retro-term}
+
+# Gui Bluetooth
+ctrl + alt + b
+	bluedevil-wizard
+
+# Plasma Settings
+ctrl + alt + m
+	systemsettings5
+
+# Gotop
+ctrl + alt + {_, shift +} g
+	{kitty, cool-retro-term} -e gotop -c monokai
+
+# Gnome-notes
+ctrl + alt + n
+	bijiben
+
+# Compton Toggle
+ctrl + alt + o
+    ~/.config/bspwm/scripts/compton-toggle.sh
+
+# Start Nice pipes
+ctrl + alt + {_, shift +} Return
+	{kitty, cool-retro-term} -e ~/Scripts/Pipes.sh -r 0 -t 3
+
+# Gamming time
+ctrl + alt + j
+	lutris
+
+# Gamming time
+ctrl + alt + J 
+	~/Applications/rpcs3
+
+# Quick start
+ctrl + space
+	rofi -show drun
+
+
+
+#  '||''|.          '||           '||                      
+#   ||   ||   ...    ||  .... ...  || ...   ....   ... ..  
+#   ||...|' .|  '|.  ||   '|.  |   ||'  || '' .||   ||' '' 
+#   ||      ||   ||  ||    '|.|    ||    | .|' ||   ||     
+#  .||.      '|..|' .||.    '|     '|...'  '|..'|' .||.    
+#                        .. |                              
+#                         ''    
+
+# Launch Polybar 
+super + y
+    /home/yannz/.config/polybar/launch.sh
+
+# Hide Polybar
+super + shift + y
+    polybar-msg cmd toggle
+	
+
+
+
+#  '||''|.    .|'''.|  '||''|.  '|| '||'  '|' '||    ||' 
+#   ||   ||   ||..  '   ||   ||  '|. '|.  .'   |||  |||  
+#   ||'''|.    ''|||.   ||...|'   ||  ||  |    |'|..'||  
+#   ||    || .     '||  ||         ||| |||     | '|' ||  
+#  .||...|'  |'....|'  .||.         |   |     .|. | .||. 
+
+
+
+# azerty keyboard layout for numbers 1-10 can be also that
+# {ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla,agrave}
+
+#################################################################
+
+# Focus selected desktop FOR AZERTY KEYBOARDS
+super + {ampersand,eacute,quotedbl,apostrophe,parenleft,minus,egrave,underscore,ccedilla,agrave}
+	bspc desktop -f '^{1-9,10}'
+
+
+# Move window to selected desktop FOR AZERRTY KEYBOARDS
+# Use number because shift
+super + shift + {1-9, 0}
+    id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}
+
+#################################################################
+
+
+####################
+#    Orientation   #
+####################
+
+# Rotate desktop
+alt + space
+	bspc node @/ --rotate {90,-90}
+
+# Focus/swap windows by direction
+super + {k,l,o,m}
+	bspc node --swap {west,south,north,east}
+
+# Flip layout vertically/horizontally
+super + {_,shift + } a
+	bspc node @/ --flip {vertical,horizontal}
+
+# Different style of movement: transplant into window in chosen direction
+super + {Left,Down,Up,Right}
+	euclid_mover {west,south,north,east}
+
+
+####################
+# Floatting & Size #
+####################
+
+# Toggle fullscreen of window
+super + f
+	bspc node --state \~fullscreen
+
+# Focus selected desktop
+super + v
+	bspc desktop -l next
+
+# Equalize differents windows
+super + less
+    bspc node {@/,@parent} {--equalize,--balance}
+
+# Improve window in direction
+super + alt + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0  }
+
+# Reduce window in direction
+super + alt + shift + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# Move floating window
+super + {_,shift + }{Left,Down,Up,Right}
+	~/.config/bspwm/scripts/move-window {_,edge-}{west,south,north,east}
+
+# Set the window state
+super + s
+	bspc node -t {floating,tiled}
+
+
+################
+# Next Windows #
+################
+
+# Define splitting ratio for next window on leaf/parent
+super + ctrl + {ampersand,eacute,quotedbl,apostrophe,parenleft,minus,egrave,underscore,ccedilla}
+	bspc node -o 0.{1-9}
+
+# Define splitting direction
+super + ctrl + {k, l, o, m}
+	bspc node -p {west,south,north,east}
+
+# Cancel preselection
+super + ctrl + space
+	bspc node -p cancel
+
+
+################
+#     Hide     #
+################
+
+### Map or unmap windows (functional equivalent of "minimize")
+# See all hide
+super + ctrl + h
+    whid dmenu
+
+# Hide
+super + h
+    whid hide
+
+# Unhide last
+super + shift + h
+	whid last
+
+
+################
+#     Misc     #
+################
+
+# Quick swap
+alt + Tab
+	bspc  node -f {next.local, prev.local}
+
+# Close app
+super + q
+	bspc node -k
+
+# Reload bspwm
+super + shift + r
+	~/.config/bspwm/bspwmrc
+
+# Quit bspwm
+super + shift + x
+	bspc quit

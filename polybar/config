@@ -1,0 +1,651 @@
+
+
+;  '||''|.          '||           '||                           ..|'''.|                    .'|. 
+;   ||   ||   ...    ||  .... ...  || ...   ....   ... ..     .|'     '    ...   .. ...   .||.   
+;   ||...|' .|  '|.  ||   '|.  |   ||'  || '' .||   ||' ''    ||         .|  '|.  ||  ||   ||    
+;   ||      ||   ||  ||    '|.|    ||    | .|' ||   ||        '|.      . ||   ||  ||  ||   ||    
+;  .||.      '|..|' .||.    '|     '|...'  '|..'|' .||.        ''|....'   '|..|' .||. ||. .||.   
+;                         .. |                                                                    
+;                         ''                                                                     
+
+
+;=====================================================
+;
+; To learn more about how to configure Polybar
+; go to https://github.com/jaagr/polybar
+;
+; The README contains alot of information
+; Themes : https://github.com/jaagr/dots/tree/master/.local/etc/themer/themes
+; https://github.com/jaagr/polybar/wiki/
+; https://github.com/jaagr/polybar/wiki/Configuration
+; https://github.com/jaagr/polybar/wiki/Formatting
+;
+;=====================================================
+
+
+[global/wm]
+;https://github.com/jaagr/polybar/wiki/Configuration#global-wm-settings
+margin-top = 0
+margin-bottom = 0
+
+
+[settings]
+; Define fallback values used by all module formats
+; Use this if it's not defind
+format-foreground = #FF0000
+format-background = #00FF00
+
+
+[colors]
+
+; General
+background     = ${xrdb:color0:#282A2E}
+background-alt = ${xrdb:color5:#A54242} 
+background-bis = ${xrdb:color13:#CC6666} 
+foreground     = ${xrdb:color7:#707880}
+foreground-alt = ${xrdb:color15:#E2BEAC}
+
+; BSPWM
+focus 		   = ${xrdb:ramp4:#5E0000}
+
+; Volume
+no-volume   = ${xrdb:ramp0:#FFFFFF}
+volume-min  = ${xrdb:ramp0:#FFFFFF}
+volume-min1 = ${xrdb:ramp1:#FFDAC7}
+volume-med  = ${xrdb:ramp2:#FFA291}
+volume-med1 = ${xrdb:ramp3:#7F0600}
+volume-max  = ${xrdb:ramp4:#5E0000}
+volume-max1 = ${xrdb:ramp5:#000000} 
+
+; Connection
+no-connection   = ${xrdb:ramp0:#FFFFFF}
+connection-min  = ${xrdb:ramp0:#FFFFFF}
+connection-min1 = ${xrdb:ramp1:#FFDAC7}
+connection-med  = ${xrdb:ramp2:#FFA291}
+connection-med1 = ${xrdb:ramp3:#7F0600}
+connection-max  = ${xrdb:ramp4:#5E0000}
+connection-max1 = ${xrdb:ramp5:#000000} 
+
+; Temperature
+temperature-min  = ${xrdb:ramp0:#FFFFFF}
+temperature-min1 = ${xrdb:ramp1:#FFDAC7}
+temperature-med  = ${xrdb:ramp2:#FFA291}
+temperature-med1 = ${xrdb:ramp3:#7F0600}
+temperature-max  = ${xrdb:ramp4:#5E0000}
+temperature-max1 = ${xrdb:ramp5:#000000} 
+
+; Battery
+discharging = ${xrdb:color3:#DE935F}
+charging    = ${xrdb:color2:#8C9440}
+
+transparent = #00000000
+
+
+;  '||    ||'          ||           '||                         '    '||''|.    .|'''.|  '||''|.  '|| '||'  '|' '||    ||'    
+;   |||  |||   ....   ...  .. ...    || ...   ....   ... ..           ||   ||   ||..  '   ||   ||  '|. '|.  .'   |||  |||     
+;   |'|..'||  '' .||   ||   ||  ||   ||'  || '' .||   ||' ''          ||'''|.    ''|||.   ||...|'   ||  ||  |    |'|..'||     
+;   | '|' ||  .|' ||   ||   ||  ||   ||    | .|' ||   ||              ||    || .     '||  ||         ||| |||     | '|' ||     
+;  .|. | .||. '|..'|' .||. .||. ||.  '|...'  '|..'|' .||.            .||...|'  |'....|'  .||.         |   |     .|. | .||.    
+                                                                                                                       
+
+[bar/mainbar-bspwm]
+monitor = ${env:MONITOR}
+monitor-fallback = eDP1
+monitor-strict = false
+override-redirect = false
+
+bottom = false
+fixed-center = true
+
+width = 100%
+height = 20
+
+background = ${colors.transparent}
+foreground = ${colors.foreground}
+
+radius = 10
+line-size = 2
+line-color = ${colors.background}
+
+border-size = 4
+border-color = ${colors.transparent}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+;https://github.com/jaagr/polybar/wiki/Fonts
+font-0 = "TerminessTTF Nerd Font:size=9;2"
+font-1 = "TerminessTTF Nerd Font:size=16;4"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
+font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
+font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
+
+modules-left = bspwm s2 s1 backlight s3 s0 pulseaudio s2 s0 bluetooth s2 s1 xwindow s3
+modules-center = s1 battery s5
+modules-right = s6 network s5 s7 memory2 s4 s7 temperature1 s4 s6 cpu2 s5 s7 date
+
+; Enable support for inter-process messaging
+; See the Messaging wiki page for more details.
+enable-ipc = true
+
+
+;  '||'  '|'                   .    ||                  '||     '    '||''|.    .|'''.|  '||''|.  '|| '||'  '|' '||    ||'    
+;   '|.  .'    ....  ... ..  .||.  ...    ....   ....    ||           ||   ||   ||..  '   ||   ||  '|. '|.  .'   |||  |||     
+;    ||  |   .|...||  ||' ''  ||    ||  .|   '' '' .||   ||           ||'''|.    ''|||.   ||...|'   ||  ||  |    |'|..'||     
+;     |||    ||       ||      ||    ||  ||      .|' ||   ||           ||    || .     '||  ||         ||| |||     | '|' ||     
+;      |      '|...' .||.     '|.' .||.  '|...' '|..'|' .||.         .||...|'  |'....|'  .||.         |   |     .|. | .||. 
+
+
+[bar/vertical-bspwm]
+monitor = ${env:MONITOR}
+monitor-fallback = eDP1
+monitor-strict = false
+override-redirect = false
+bottom = false
+fixed-center = false
+width = 100%
+height = 20
+
+background = ${colors.transparent}
+foreground = ${colors.foreground}
+
+radius = 10
+line-size = 2
+line-color = ${colors.background}
+
+border-size = 4
+border-color = ${colors.transparent}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+;https://github.com/jaagr/polybar/wiki/Fonts
+font-0 = "TerminessTTF Nerd Font:size=10;2"
+font-1 = "TerminessTTF Nerd Font:size=16;4"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
+font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
+font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
+
+modules-left = bspwm s2 s1 xwindow s3
+modules-center = 
+modules-right = s7 pulseaudio s4 s7 temperature1 s4 s7 date
+
+; Enable support for inter-process messaging
+; See the Messaging wiki page for more details.
+enable-ipc = true
+
+
+;  '||''|.    .|'''.|  '||''|.  '|| '||'  '|' '||    ||'    '||    ||'              '||                   '||          
+;   ||   ||   ||..  '   ||   ||  '|. '|.  .'   |||  |||      |||  |||    ...      .. ||  ... ...    ...    ||    ....  
+;   ||'''|.    ''|||.   ||...|'   ||  ||  |    |'|..'||      |'|..'||  .|  '|.  .'  '||   ||  ||  .|  '|.  ||  .|...|| 
+;   ||    || .     '||  ||         ||| |||     | '|' ||      | '|' ||  ||   ||  |.   ||   ||  ||  ||   ||  ||  ||      
+;  .||...|'  |'....|'  .||.         |   |     .|. | .||.    .|. | .||.  '|..|'  '|..'||.  '|..'|.  '|..|' .||.  '|...' 
+                                                                                                                    
+
+[module/bspwm]
+type = internal/bspwm
+
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+pin-workspaces = true
+
+;extra icons to choose from
+;http://fontawesome.io/cheatsheet/
+;       v             
+
+ws-icon-0 = 1;
+ws-icon-1 = 2; 
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-default = " "
+
+format = <label-state><label-mode>
+
+label-focused = %icon%
+label-focused-background = ${colors.background-alt}
+label-focused-padding = 1
+label-focused-foreground = ${colors.focus}
+
+label-occupied = %icon%
+label-occupied-padding = 1
+label-occupied-foreground = ${colors.background}
+label-occupied-background = ${colors.background-alt}
+
+label-urgent = %icon%
+label-urgent-padding = 1
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 1
+label-empty-background = ${colors.background-alt}
+
+;label-monocle = "  "
+;label-monocle-foreground = ${colors.foreground}
+;label-monocle-background = ${colors.background-alt}
+
+;label-tiled = "  "
+;label-tiled-foreground = ${colors.foreground}
+;label-tiled-background = ${colors.background-alt}
+
+;label-fullscreen = "  "
+;label-fullscreen-foreground = ${colors.foreground}
+;label-fullscreen-background = ${colors.background-alt}
+
+;label-floating = "  "
+;label-floating-foreground = ${colors.foreground}
+;label-floating-background = ${colors.background-alt}
+
+;label-pseudotiled = "  "
+;label-pseudotiled-foreground = ${colors.foreground}
+;label-pseudotiled-background = ${colors.background-alt}
+;label-locked = "  "
+;label-locked-foreground = ${colors.foreground}
+;label-locked-background = ${colors.background-alt}
+;label-sticky = "  "
+;label-sticky-foreground = ${colors.foreground}
+;label-sticky-background = ${colors.background-alt}
+;label-private =  "     "
+;label-private-foreground = ${colors.foreground}
+;label-private-background = ${colors.background-alt}
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+
+;   .|'''.|  '||                     .             '||    ||'              '||                   '||          
+;   ||..  '   ||   ....   .. ...   .||.   ....      |||  |||    ...      .. ||  ... ...    ...    ||    ....  
+;    ''|||.   ||  '' .||   ||  ||   ||   ||. '      |'|..'||  .|  '|.  .'  '||   ||  ||  .|  '|.  ||  .|...|| 
+;  .     '||  ||  .|' ||   ||  ||   ||   . '|..     | '|' ||  ||   ||  |.   ||   ||  ||  ||   ||  ||  ||      
+;  |'....|'  .||. '|..'|' .||. ||.  '|.' |'..|'    .|. | .||.  '|..|'  '|..'||.  '|..'|.  '|..|' .||.  '|...'
+
+
+#      
+
+; ---------------------
+
+[module/s0]
+type = custom/text
+content = "%{T2}%{T-}"
+content-font = 5
+content-foreground = ${colors.background-alt}
+content-background = ${colors.transparent}
+
+[module/s1]
+type = custom/text
+content = "%{T2}%{T-}"
+content-font = 5
+content-foreground = ${colors.background-bis}
+content-background = ${colors.transparent}
+
+; ---------------------
+
+[module/s2]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${colors.background-alt}
+content-background = ${colors.transparent}
+
+[module/s3]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${colors.background-bis}
+content-background = ${colors.transparent}
+
+; ---------------------
+
+[module/s4]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${colors.background-alt}
+content-background = ${colors.transparent}
+
+
+[module/s5]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${colors.background-bis}
+content-background = ${colors.transparent}
+
+; ---------------------
+
+[module/s6]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${colors.background-bis}
+content-background = ${colors.transparent}
+
+[module/s7]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${colors.background-alt}
+content-background = ${colors.transparent}
+
+
+;      |     '||  '||                             '||           '||                 
+;     |||     ||   ||     .. .. ..     ...      .. ||  ... ...   ||    ....   ....  
+;    |  ||    ||   ||      || || ||  .|  '|.  .'  '||   ||  ||   ||  .|...|| ||. '  
+;   .''''|.   ||   ||      || || ||  ||   ||  |.   ||   ||  ||   ||  ||      . '|.. 
+;  .|.  .||. .||. .||.    .|| || ||.  '|..|'  '|..'||.  '|..'|. .||.  '|...' |'..|'
+
+[module/backlight]
+type = custom/script
+interval = 0.2
+exec = ~/.config/polybar/scripts/backlight.sh
+
+scroll-up = exec light -A 5
+scroll-down = exec light -U 5
+
+format-prefix = " "
+format-foreground = ${colors.background}
+format-background = ${colors.background-bis}
+
+label = %output%%
+format-padding = 1
+
+################################################################################
+
+[module/bluetooth]
+type = custom/script
+exec = ~/.config/polybar/scripts/bluetooth.sh
+interval = 2
+click-left = exec blueberry
+click-right = exec ~/.config/polybar/scripts/toggle_bluetooth.sh
+format-padding = 1
+format-background = ${colors.background-alt}
+format-foreground = #ffffff
+
+################################################################################
+
+[module/battery]
+;https://github.com/jaagr/polybar/wiki/Module:-battery
+type    = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 95
+
+time-format = %H:%M
+format-charging 		   = <animation-charging> <label-charging>
+label-charging 			   =  %percentage%%
+label-charging-foreground  = ${colors.background}
+format-charging-foreground = ${colors.background}
+format-charging-background = ${colors.background-bis}
+format-charging-underline  = ${colors.charging}
+
+format-discharging 			  = <ramp-capacity> <label-discharging>
+label-discharging 			  =  %percentage%% (%time%)
+label-discharging-foreground  = ${colors.background}
+format-discharging-foreground = ${colors.background}
+format-discharging-background = ${colors.background-bis}
+format-discharging-underline  = ${colors.discharging}
+
+format-full-prefix 			  = " "
+format-full-prefix-foreground = ${colors.background}
+format-full-foreground 		  = ${colors.background}
+format-full-background  	  = ${colors.background-bis}
+format-full-underline 		  = ${colors.charging}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.discharging}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.charging}
+animation-charging-framerate = 750
+
+
+################################################################################
+
+[module/cpu2]
+;https://github.com/jaagr/polybar/wiki/Module:-cpu
+type = internal/cpu
+; Seconds to sleep between updates
+; Default: 1
+interval = 1
+format-foreground = ${colors.background}
+format-background = ${colors.background-bis}
+format-prefix = ""
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.background-bis}
+
+label-font = 1
+
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+format = <label>
+
+
+; Available tokens:
+;   %percentage% (default) - total cpu load
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label = %percentage:3%%
+
+################################################################################
+
+[module/date]
+;https://github.com/jaagr/polybar/wiki/Module:-date
+type = internal/date
+; Seconds to sleep between updates
+interval = 1
+; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date = " %a %d %b"
+date-alt = " %a %d %b, %Y"
+time = %H:%M
+time-alt = %l:%M %p
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-foreground = ${colors.foreground-alt}
+format-background = ${colors.background-alt}
+label = "%date% %time% "
+
+################################################################################
+
+[module/memory2]
+;https://github.com/jaagr/polybar/wiki/Module:-memory
+type = internal/memory
+interval = 1
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+label = %percentage_used:3%%
+
+#format = Mem <label>
+format = <label>
+format-prefix = ""
+format-prefix-font = 4
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-background = ${colors.background-alt}
+format-foreground = ${colors.foreground-alt}
+format-background = ${colors.background-alt}
+
+################################################################################
+
+[module/network]
+;https://github.com/jaagr/polybar/wiki/Module:-network
+type = internal/network
+interface = wlp2s0
+
+label-connected = " %essid%"
+label-connected-background = ${colors.background-bis}
+
+format-connected = %{A1:kitty -e nmtui:}<ramp-signal>%{A}
+format-connected-foreground = ${colors.background}
+format-connected-background = ${colors.background-bis}
+
+ramp-signal-0 = 
+ramp-signal-0-foreground = ${colors.connection-min}
+ramp-signal-1 = 
+ramp-signal-1-foreground = ${colors.connection-min1}
+ramp-signal-2 = 
+ramp-signal-2-foreground = ${colors.connection-med}
+ramp-signal-3 = 
+ramp-signal-3-foreground = ${colors.connection-med1}
+ramp-signal-4 = 
+ramp-signal-4-foreground = ${colors.connection-max}
+ramp-signal-5 = 
+ramp-signal-5-foreground = ${colors.connection-max1}
+
+format-disconnected = %{A1:konsole -e nmtui:}%{A}
+format-disconnected-foreground = ${colors.background}
+format-disconnected-background = ${colors.background-bis}
+
+################################################################################
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = false
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
+
+format-volume = <ramp-volume>
+
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-muted = <label-muted>
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels% (unreleased)
+label-volume = " %percentage%%"
+label-volume-foreground = ${colors.background}
+label-volume-background = ${colors.background-alt}
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels% (unreleased)
+label-muted = "  "
+label-muted-font = 4
+label-muted-foreground = ${colors.no-volume}
+label-muted-background = ${colors.background-alt}
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = "  "
+ramp-volume-0-foreground = ${colors.volume-min}
+ramp-volume-1 = "  "
+ramp-volume-1-foreground = ${colors.volume-min1}
+ramp-volume-2 = "  "
+ramp-volume-2-foreground = ${colors.volume-med}
+ramp-volume-3 = "  "
+ramp-volume-3-foreground = ${colors.volume-med1}
+ramp-volume-4 = "  "
+ramp-volume-4-foreground = ${colors.volume-max}
+ramp-volume-5 = "  "
+ramp-volume-5-foreground = ${colors.volume-max1}
+
+ramp-volume-foreground = ${colors.background}
+ramp-volume-background = ${colors.background-alt}
+
+################################################################################
+
+[module/temperature1]
+;https://github.com/jaagr/polybar/wiki/Module:-temperature
+type = internal/temperature
+; Thermal zone to use
+; To list all the zone types, run
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
+thermal-zone = 0
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+hwmon-path = /sys/class/hwmon/hwmon0/temp1_input
+
+base-temperature = 20
+warn-temperature = 90
+
+format = <ramp><label>
+format-foreground = ${colors.foreground-alt}
+format-background = ${colors.background-alt}
+
+format-warn = <ramp> <label-warn>
+format-warn-foreground = ${colors.foreground-alt}
+format-warn-background = ${colors.background-alt}
+
+label = " %temperature-c%"
+label-foreground = ${colors.foreground-alt}
+label-background = ${colors.background-alt}
+
+label-warn = " %temperature-c%"
+label-warn-foreground = ${colors.foreground-alt}
+label-warn-background = ${colors.background-alt}
+
+ramp-0 = 
+ramp-0-foreground = ${colors.temperature-min}
+ramp-1 = 
+ramp-1-foreground = ${colors.temperature-min1}
+ramp-2 = 
+ramp-2-foreground = ${colors.temperature-med}
+ramp-3 = 
+ramp-3-foreground = ${colors.temperature-med1}
+ramp-4 = 
+ramp-4-foreground = ${colors.temperature-max}
+ramp-5 = 
+ramp-5-foreground = ${colors.temperature-max1}
+
+################################################################################
+
+[module/xwindow]
+;https://github.com/jaagr/polybar/wiki/Module:-xwindow
+type = internal/xwindow
+
+; Available tokens:
+;   %title%
+; Default: %title%
+label = %title%
+label-minlen = 30
+label-maxlen = 30
+
+format-prefix = " " 
+format-foreground = ${colors.background}
+format-background = ${colors.background-bis}
+
+###############################################################################
