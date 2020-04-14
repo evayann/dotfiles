@@ -103,7 +103,7 @@ height = 20
 background = ${colors.transparent}
 foreground = ${colors.foreground}
 
-radius = 10
+radius = 0
 line-size = 2
 line-color = ${colors.background}
 
@@ -123,9 +123,9 @@ font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
 font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=13;3"
 font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
 
-modules-left = bspwm s2 s1 backlight s3 s0 pulseaudio s2 s0 bluetooth s2 s1 xwindow s3
+modules-left = start2 bspwm s2 backlight s3 pulseaudio gap bluetooth s2 xwindow end1
 modules-center = s1 battery s5
-modules-right = s6 network s5 s7 memory2 s4 s7 temperature1 s4 s6 cpu2 s5 s7 date
+modules-right = start1 network s7 memory2 gap temperature1 s6 cpu2 s7 date end2
 
 ; Enable support for inter-process messaging
 ; See the Messaging wiki page for more details.
@@ -152,7 +152,7 @@ height = 20
 background = ${colors.transparent}
 foreground = ${colors.foreground}
 
-radius = 10
+radius = 0
 line-size = 2
 line-color = ${colors.background}
 
@@ -172,9 +172,9 @@ font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
 font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=13;3"
 font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
 
-modules-left = bspwm s2 s1 xwindow s3
+modules-left = start2 bspwm s2 xwindow end1
 modules-center = 
-modules-right = s7 pulseaudio s4 s7 temperature1 s4 s7 date
+modules-right = start2 pulseaudio gap temperature1 gap date end2
 
 ; Enable support for inter-process messaging
 ; See the Messaging wiki page for more details.
@@ -296,23 +296,16 @@ type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
 content-foreground = ${colors.background-alt}
-content-background = ${colors.transparent}
+content-background = ${colors.background-bis}
 
 [module/s3]
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
 content-foreground = ${colors.background-bis}
-content-background = ${colors.transparent}
+content-background = ${colors.background-alt}
 
 ; ---------------------
-
-[module/s4]
-type = custom/text
-content = "%{T3}%{T-}"
-content-font = 5
-content-foreground = ${colors.background-alt}
-content-background = ${colors.transparent}
 
 
 [module/s5]
@@ -329,11 +322,50 @@ type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
 content-foreground = ${colors.background-bis}
-content-background = ${colors.transparent}
+content-background = ${colors.background-alt}
 
 [module/s7]
 type = custom/text
 content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${colors.background-alt}
+content-background = ${colors.background-bis}
+
+; ---------------------
+
+[module/gap]
+type = custom/text
+content = "%{T3}█%{T-}"
+content-font = 5
+content-foreground = ${colors.background-alt}
+content-background = ${colors.background-alt}
+
+; ---------------------
+
+[module/start1]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${colors.background-bis}
+content-background = ${colors.transparent}
+
+[module/start2]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${colors.background-alt}
+content-background = ${colors.transparent}
+
+[module/end1]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${colors.background-bis}
+content-background = ${colors.transparent}
+
+[module/end2]
+type = custom/text
+content = "%{T3}%{T-}"
 content-font = 5
 content-foreground = ${colors.background-alt}
 content-background = ${colors.transparent}
