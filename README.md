@@ -11,7 +11,7 @@ Bellow you have 2 screen shot (the grey part isn't visible it's add by spectacle
 ### Empty Desktop
 ![Empty Desktop](./img/Empty.png)
 
-### Little Bussy Desktop
+### Little Busy Desktop
 ![Bussy Desktop](./img/Busy.png)
 
 ## Informations
@@ -34,6 +34,13 @@ With my configuration, you can't click on the desktop because BSPWM capture mous
 ```bash
 bspc config focus_follows_pointer false
 ```
+
+## BSPWM & SXHKD
+
+Documentation : <https://github.com/baskerville/bspwm/wiki>, <https://github.com/baskerville/sxhkd>
+
+To setup BSPWM and SXHKD, you can install both from pacman. After that you can remove txt extension of bspwm.desktop.txt and copy it to /usr/share/xsessions. When is done, you can select your desktop when you login on your computer.  
+
 
 ## Wallpaper 
 
@@ -78,13 +85,21 @@ Documentation : <https://sw.kovidgoyal.net/kitty/conf.html>
 
 For kitty configuration, you just need to copy the kitty.conf in ~/.config/kitty folder.
 
-For zsh theme, you need to install zsh with pacman and zsh from git here :
-<https://github.com/romkatv/powerlevel10k>
+For zsh theme, you need to install zsh with pacman and zsh from git here :<br/>
+<https://github.com/romkatv/powerlevel10k><br/>
 And copy the file oh-my-zsh.sh and the foldeer custom at the place of your installation of zsh.
 You also need to instal zsh-completions from pacman.
 
 ![Kitty](./img/Kitty.png)
 
+
+## Rofi
+
+Documentation : <https://github.com/davatorium/rofi/wiki>
+
+I use Rofi for application launcher. You just need to copy the config.rasi file at ~/.config/rofi
+
+![Rofi](./img/Rofi.png)
 
 ## Idea Suite
 
